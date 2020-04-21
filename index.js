@@ -30,7 +30,7 @@ confirm = (title, id, placeholder, func) => {
 Swal.fire({
     title: '이름이 뭐야?',
     html:
-        `<input id="nameInput" style="font-size: 1.2rem; border-radius: .3125em; padding: 1rem; border: 1px solid #eee" placeholder="홍길동">`,
+        `<input id="nameInput" style="font-size: 1.2rem; border-radius: .3125em; padding: 1rem; border: 1px solid #eee" placeholder="유저">`,
     focusConfirm: false,
     confirmButtonText: '확인'
 }).then((result) => {
