@@ -23,7 +23,7 @@ const confirm = (title, id, placeholder, func) => {
   });
 }
 
-confirm('이름이 뭐야?', 'nameInput', '홍길동', (id) => {
+confirm('이름이 뭐야?', 'nameInput', '엑슨', (id) => {
   nickname = document.getElementById(id).value;
   if (nickname == '') window.location.reload();
 });
