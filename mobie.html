@@ -1,207 +1,313 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>chammuh barber</title>
-    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet" type="text/css">
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            font-family: 'Spoqa Han Sans', 'Sans-serif';
-        }
+  <meta charset="UTF-8" />
+  <!-- 노치/세이프 영역, 모바일 100vh 문제 보정 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>chammuh barber</title>
+  <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet" type="text/css">
+  <style>
+    /* 기본 리셋 */
+    * { padding:0; margin:0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html,body { height:100%; background:#000; }
 
-        .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: min(960px, 95vw); /* 화면 폭에 맞춰 축소되도록 */
-        }
+    /* --vh 변수는 JS에서 설정 (모바일 주소창 문제 보정) */
+    :root { --vh: 1vh; }
 
-        canvas {
-            background: #0044ff9a;
-            margin: 0 auto;
-            border-radius: 2rem;
-            display: block;
-            width: 100%;         /* CSS로 가로폭 맞춤 (내부 좌표계는 960x540 유지) */
-            max-width: 960px;
-            height: auto;
-            touch-action: manipulation; /* 터치 동작 간소화 (더 자연스러운 터치) */
-            -webkit-tap-highlight-color: transparent;
-            -webkit-user-select: none;
-            user-select: none;
-        }
-
-        .title {
-            margin-top: 10px;
-            font-weight: 100;
-            font-size: 2rem;
-        }
-
-        .container p {
-            font-weight: 100;
-            font-size: 1.3em;
-            margin-top: 10px;
-        }
-        
-        /* 추가된 footer 스타일 */
-        .footer {
-            margin-top: 20px; /* 상단 여백 추가 */
-            text-align: center;
-            font-size: 0.9em;
-            color: #666; /* 글씨 색상을 연하게 */
-        }
-    </style>
-
-</head>
-
-<body>
-<div class="container">
-<canvas id="game" height="540" width="960"></canvas>
-<h1 class="title">5년만에 돌아온 참연시</h1>
-<p>조작법 - 마우스 클릭으로 스토리 넘기기</p>
-<p>
-벚꽃 흩날리는 고등학교 첫날, 당신의 평범했던 일상이 두 명의 소녀로 인해 특별해집니다.<br>
-모든 것이 완벽한 <b>소꿉친구</b>와 새롭게 다가온 차분하고 <b>어른스러운 동급생</b>.<br>
-당신의 사소한 선택이 그녀들과의 관계를 바꾸고, 때로는 돌이킬 수 없는 결말을 불러옵니다.
-</p>
-<p>
-"참연시"에는 <b>총 6개의 멀티 엔딩</b>이 준비되어 있습니다.<br>
-당신의 선택으로 누군가와 달콤한 사랑을 시작할 수도, 혹은 모두가 파국으로 치닫는 비극을 맞이할 수도 있습니다.
-</p>
-<p>
-과연 당신의 마음이 향하는 곳은 어디일까요?<br>
-<del>어우 오글거려</del>
-</p>
-<p>
-※ 저장/로드는 잘 작동하지 않으니 쓰지 않는 것을 추천합니다.
-</p>
-
-<footer class="footer">
-    원작: 프네우마 | 제작: 진윤(윤하진)
-</footer>
-
-</div>
-</body>
-  <audio id="bgm-player" loop></audio>
-  <audio id="sfx-player"></audio>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="./Visual-Novel-Engine/index.js"></script>
-<script src="index.js"></script>
-<script>
-(function(){
-  const canvas = document.getElementById('game');
-  if(!canvas) return;
-
-  // 초기 CSS 세팅 (내부 논리 해상도 960x540 유지)
-  canvas.style.width = '100%';
-  canvas.style.maxWidth = '960px';
-  canvas.style.height = 'auto';
-  canvas.style.touchAction = 'manipulation';
-  canvas.style.webkitTapHighlightColor = 'transparent';
-  canvas.style.userSelect = 'none';
-
-  const container = document.querySelector('.container');
-  if(container) {
-    container.style.width = 'min(960px, 95vw)';
-    container.style.margin = '0 auto';
-  }
-
-  // 터치 이벤트를 기존 마우스 이벤트로 변환
-  function dispatchMouseEvent(type, touchEvent) {
-    const touches = touchEvent.changedTouches && touchEvent.changedTouches.length ? touchEvent.changedTouches : touchEvent.touches;
-    if(!touches || touches.length === 0) return;
-    const t = touches[0];
-    const evt = new MouseEvent(type, {
-      bubbles: true,
-      cancelable: true,
-      clientX: t.clientX,
-      clientY: t.clientY,
-      view: window
-    });
-    canvas.dispatchEvent(evt);
-  }
-
-  canvas.addEventListener('touchstart', function(e){
-    e.preventDefault();
-    dispatchMouseEvent('mousemove', e);
-    // 기존 엔진 시작/클릭 처리는 click 이벤트로 하므로 click 합성
-    dispatchMouseEvent('click', e);
-  }, {passive:false});
-
-  canvas.addEventListener('touchmove', function(e){
-    e.preventDefault();
-    dispatchMouseEvent('mousemove', e);
-  }, {passive:false});
-
-  canvas.addEventListener('touchend', function(e){
-    e.preventDefault();
-    const evt = new MouseEvent('mouseup', { bubbles:true });
-    canvas.dispatchEvent(evt);
-  }, {passive:false});
-
-  canvas.addEventListener('contextmenu', function(e){ e.preventDefault(); });
-
-  // 모바일에서 가로/세로에 따라 캔버스 크기 조절
-  function adjustCanvasForOrientation() {
-    const vw = window.innerWidth;
-    const vh = window.innerHeight;
-
-    // 가로 모드(landscape)일 때: 캔버스 높이를 뷰포트 높이에 맞춤(여백 5%)
-    if (vw > vh) {
-      // 가로 모드: 높이를 기준으로 맞춤 -> UI(대화창 등)가 화면에 잘 보이도록 약간 여유 줌
-      canvas.style.height = '95vh';
-      canvas.style.width = 'auto';
-      canvas.style.maxWidth = 'none';
-      // 컨테이너도 가운데 정렬(가로 모드에서 세로 중심 맞춤)
-      if(container) {
-        container.style.width = '100%';
-        container.style.height = '95vh';
-        container.style.display = 'flex';
-        container.style.alignItems = 'center';
-        container.style.justifyContent = 'center';
-      }
-    } else {
-      // 세로 모드: 기존 동작 유지(100% 폭)
-      canvas.style.width = '100%';
-      canvas.style.height = 'auto';
-      canvas.style.maxWidth = '960px';
-      if(container) {
-        container.style.width = 'min(960px, 95vw)';
-        container.style.height = 'auto';
-        container.style.display = 'block';
-      }
+    /* 최상위 컨테이너: 화면 전체를 덮고 중앙 정렬 */
+    .container {
+      position: fixed;
+      inset: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100vw;
+      height: calc(var(--vh, 1vh) * 100);
+      background: black;
+      overflow: hidden;
     }
 
-    // (선택) 고DPR 선명도 문제: 엔진을 수정하지 않는 한 CSS 스케일로 처리되므로
-    // 아주 선명하지 않을 수 있음. 필요하면 엔진 쪽에서 devicePixelRatio 대응을 권장.
+    /* 캔버스: 원본 논리 비율(16:9, 960x540)을 유지하면서 중앙에 */
+    canvas {
+      border-radius: 0.5rem;
+      display: block;
+      width: min(960px, 100%);
+      height: auto;
+      max-height: 100%;
+      background: #0044ff9a;
+      touch-action: manipulation;
+      user-select: none;
+    }
+
+    /* 가로 전체화면 모드 (정식 Fullscreen + orientation lock 성공 시) */
+    .landscape-fullscreen {
+      width: 100vw !important;
+      height: 100vh !important;
+    }
+    .landscape-fullscreen canvas {
+      width: 100vw !important;
+      height: 100vh !important;
+      max-width: none;
+      max-height: none;
+      border-radius: 0;
+      object-fit: cover;
+    }
+
+    /* Fallback: 화면 회전(CSS transform) 적용 모드 (orientation.lock 실패시 사용) */
+    .rotated-css {
+      /* 컨테이너를 가로로 회전시키고 가운데 정렬 */
+      transform: rotate(90deg);
+      transform-origin: center center;
+      width: 100vh !important;  /* swapped dims */
+      height: 100vw !important;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      margin: 0;
+      padding: 0;
+      /* translate로 화면 중앙 정렬 */
+      translate: -50% -50%;
+    }
+    .rotated-css canvas {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none;
+      max-height: none;
+      border-radius: 0;
+    }
+
+    /* 가로요청 버튼 (작고 눈에 거슬리지 않게) */
+    .rotate-btn {
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .rotate-btn svg { width: 24px; height:24px; fill: white; opacity: 0.9; }
+
+    /* 상태를 간단히 보여주는 작은 dot (선택적) */
+    .rotate-btn.active { background: rgba(255,255,255,0.16); }
+
+    /* 접근성: 숨김 텍스트(스크린리더 제외) */
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+  </style>
+</head>
+<body>
+  <!-- 텍스트는 모두 제거될 예정(원하면 JS에서 완전 삭제) -->
+  <div class="container">
+    <canvas id="game" width="960" height="540"></canvas>
+  </div>
+
+  <!-- 가로 요청 버튼: 누르면 전체화면+가로 고정 시도, 실패 시 CSS 회전으로 대체 -->
+  <button class="rotate-btn" id="rotateBtn" aria-label="가로 전체화면 요청">
+    <!-- 간단한 회전 아이콘 -->
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 2v4l3-3-3-1zm7 7h4v-2h-4V9a7 7 0 1 0 1 13h2a9 9 0 1 1-9-9v2l3-3-3-3v4z"></path>
+    </svg>
+    <span class="sr-only">가로 전체화면</span>
+  </button>
+
+  <!-- 기존 스크립트 로드(순서 유지) -->
+  <audio id="bgm-player" loop></audio>
+  <audio id="sfx-player"></audio>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+  <script src="./Visual-Novel-Engine/index.js"></script>
+  <script src="index.js"></script>
+
+  <!-- 보조 스크립트: 텍스트 제거, --vh 세팅, 터치→마우스 합성, 가로 전체화면 요청/페일백 -->
+<script>
+(function(){
+  const CANVAS_W = 960, CANVAS_H = 540;
+  const canvas = document.getElementById('game');
+  const container = document.querySelector('.container');
+  const rotateBtn = document.getElementById('rotateBtn');
+
+  if (!canvas || !container) return;
+
+  // 텍스트 제거 (요청)
+  document.querySelectorAll('h1,h2,h3,p,footer,.title,.footer').forEach(el=>el.remove());
+
+  // --vh 변수 보정 (모바일 주소창 이슈)
+  function setVhVar(){ document.documentElement.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px'); }
+  setVhVar();
+  window.addEventListener('resize', setVhVar);
+  window.addEventListener('orientationchange', ()=> setTimeout(setVhVar, 200));
+
+  // 터치 -> 마우스 이벤트 합성 (기존 엔진 유지)
+  function dispatchMouseEvent(type, touchEvent){
+    const touches = (touchEvent.changedTouches && touchEvent.changedTouches.length) ? touchEvent.changedTouches : touchEvent.touches;
+    if (!touches || touches.length === 0) return;
+    const t = touches[0];
+    const evt = new MouseEvent(type, { bubbles:true, cancelable:true, clientX: t.clientX, clientY: t.clientY, view: window });
+    canvas.dispatchEvent(evt);
+  }
+  canvas.addEventListener('touchstart', e=>{ e.preventDefault(); dispatchMouseEvent('mousemove', e); dispatchMouseEvent('click', e); }, {passive:false});
+  canvas.addEventListener('touchmove',  e=>{ e.preventDefault(); dispatchMouseEvent('mousemove', e); }, {passive:false});
+  canvas.addEventListener('touchend',   e=>{ e.preventDefault(); canvas.dispatchEvent(new MouseEvent('mouseup',{bubbles:true})); }, {passive:false});
+  canvas.addEventListener('contextmenu', e=>e.preventDefault());
+
+  // 캔버스 회전용 클래스 (회전시 transform 적용)
+  const ROTATED_CLASS = 'rotated-canvas';
+  const STYLE_ID = 'nv-fit-canvas-style';
+  if (!document.getElementById(STYLE_ID)){
+    const s = document.createElement('style');
+    s.id = STYLE_ID;
+    s.textContent = `
+      canvas.${ROTATED_CLASS} {
+        transform: rotate(90deg);
+        transform-origin: center center;
+        will-change: transform;
+      }
+      /* fullscreen class on body: still preserve aspect via JS fit */
+      body.landscape-fullscreen { overflow: hidden; }
+    `;
+    document.head.appendChild(s);
   }
 
-  // 초기 조정
-  adjustCanvasForOrientation();
+  // 뷰포트 크기(안전영역 포함) 읽기
+  function getViewportDims(){
+    // innerWidth/innerHeight already reflect safe area and address bar in most mobile browsers
+    return { vw: window.innerWidth, vh: window.innerHeight };
+  }
 
-  // 리사이즈 / 방향 변경에 대응
-  window.addEventListener('resize', () => { adjustCanvasForOrientation(); });
-  window.addEventListener('orientationchange', () => {
-    // orientationchange 직후 레이아웃이 안정되지 않을 수 있으므로 약간 지연
-    setTimeout(adjustCanvasForOrientation, 200);
+  // 캔버스 크기 맞추기 (rotated=false: 정상, rotated=true: 캔버스가 90deg 회전된 상태로 보게 됨)
+  function fitCanvas(rotated = false) {
+    const { vw, vh } = getViewportDims();
+
+    // 스케일 계산:
+    // - 정상: s <= min(vw / CANVAS_W, vh / CANVAS_H)
+    // - 회전:  캔버스가 90도 회전되면 화면에 보이는 폭 = s * CANVAS_H, 높이 = s * CANVAS_W
+    //          따라서 s <= min(vw / CANVAS_H, vh / CANVAS_W)
+    let s;
+    if (!rotated) {
+      s = Math.min(vw / CANVAS_W, vh / CANVAS_H);
+    } else {
+      s = Math.min(vw / CANVAS_H, vh / CANVAS_W);
+    }
+    // 안전값
+    if (!isFinite(s) || s <= 0) s = 1;
+
+    // 정수 픽셀로 설정(브라우저 렌더링 이슈 최소화)
+    const newW = Math.round(CANVAS_W * s);
+    const newH = Math.round(CANVAS_H * s);
+
+    // 캔버스 스타일만 변경 — 내부 논리 해상도(속성 width/height)는 건드리지 않음
+    canvas.style.width = newW + 'px';
+    canvas.style.height = newH + 'px';
+
+    // 회전 클래스 토글
+    if (rotated) canvas.classList.add(ROTATED_CLASS);
+    else canvas.classList.remove(ROTATED_CLASS);
+
+    // container 중앙 정렬 보장(플렉스 박스 이용)
+    container.style.display = 'flex';
+    container.style.alignItems = 'center';
+    container.style.justifyContent = 'center';
+  }
+
+  // 초기 맞춤
+  fitCanvas(false);
+
+  // 리사이즈/회전/풀스크린 변화에 반응
+  window.addEventListener('resize', ()=> fitCanvas(canvas.classList.contains(ROTATED_CLASS)));
+  window.addEventListener('orientationchange', ()=> setTimeout(()=> fitCanvas(canvas.classList.contains(ROTATED_CLASS)), 200));
+  document.addEventListener('fullscreenchange', ()=> fitCanvas(canvas.classList.contains(ROTATED_CLASS)));
+
+  // 전체화면 + screen.orientation.lock 시도 함수
+  async function requestLandscapeFullscreen(){
+    const target = document.documentElement;
+    try {
+      if (target.requestFullscreen) await target.requestFullscreen();
+      else if (target.webkitRequestFullscreen) await target.webkitRequestFullscreen();
+      else if (target.msRequestFullscreen) await target.msRequestFullscreen();
+
+      // orientation lock (대부분 fullscreen 상태에서만 동작)
+      if (screen.orientation && screen.orientation.lock) {
+        await screen.orientation.lock('landscape');
+      } else if (screen.lockOrientation) {
+        try { screen.lockOrientation('landscape'); } catch(e){}
+      }
+
+      // 성공(또는 허용된 상태)으로 간주 — 화면 비율 유지하여 맞춤
+      document.body.classList.add('landscape-fullscreen');
+      // 풀스크린으로 바뀔 때 뷰포트가 바뀌므로 fitCanvas 호출
+      setTimeout(()=> fitCanvas(false), 200);
+      return true;
+    } catch (err) {
+      console.warn('Fullscreen/orientation lock 실패:', err);
+      // 폴백: CSS 회전 적용 (캔버스만 90도 회전)
+      applyCssRotationFallback();
+      return false;
+    }
+  }
+
+  function exitLandscapeFullscreen(){
+    try {
+      if (document.exitFullscreen) document.exitFullscreen();
+      else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      else if (document.msExitFullscreen) document.msExitFullscreen();
+    } catch(e){}
+    document.body.classList.remove('landscape-fullscreen');
+    canvas.classList.remove(ROTATED_CLASS);
+    fitCanvas(false);
+  }
+
+  function applyCssRotationFallback(){
+    // canvas 자체를 90deg 회전시키고, 회전된 상태에 맞춰 사이즈 재조정
+    // (rotated=true 이면 fitCanvas는 회전 관련 계산식을 사용)
+    fitCanvas(true);
+    rotateBtn.classList.add('active');
+  }
+
+  // 버튼 토글 처리
+  let inLandscape = false;
+  rotateBtn.addEventListener('click', async (e)=>{
+    e.stopPropagation();
+    if (!inLandscape) {
+      const ok = await requestLandscapeFullscreen();
+      inLandscape = true;
+      rotateBtn.classList.toggle('active', ok);
+    } else {
+      exitLandscapeFullscreen();
+      inLandscape = false;
+      rotateBtn.classList.remove('active');
+    }
   });
 
-  // 자동재생 제한 완화를 위한 최초 상호작용 시 BGM 재생 시도
-  function tryUnlockAudio() {
-    const bgm = document.getElementById('bgm-player');
-    if(bgm) bgm.play().catch(()=>{});
-    window.removeEventListener('touchstart', tryUnlockAudio);
-    window.removeEventListener('click', tryUnlockAudio);
-  }
+  // 만약 사용자가 브라우저 뒤로/풀스크린 수동 해제 등으로 상태변화가 있으면 동기화
+  document.addEventListener('fullscreenchange', ()=>{
+    const fs = !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+    if (!fs) {
+      document.body.classList.remove('landscape-fullscreen');
+      rotateBtn.classList.remove('active');
+      inLandscape = false;
+      // 회전 잠금 해제 시 리사이즈 적용
+      fitCanvas(false);
+      try { if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock(); } catch(e){}
+    }
+  });
+
+  // 첫 상호작용에서 BGM 재생 시도 (자동재생 정책 완화)
+  function tryUnlockAudio(){ const bgm = document.getElementById('bgm-player'); if(bgm) bgm.play().catch(()=>{}); window.removeEventListener('touchstart', tryUnlockAudio); window.removeEventListener('click', tryUnlockAudio); }
   window.addEventListener('touchstart', tryUnlockAudio, {passive:true});
   window.addEventListener('click', tryUnlockAudio, {passive:true});
+
+  // 초기 재적용(짧은 지연으로 레이아웃 안정화 확보)
+  setTimeout(()=> fitCanvas(false), 100);
 
 })();
 </script>
 
+</body>
 </html>
