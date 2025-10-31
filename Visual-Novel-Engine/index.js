@@ -467,7 +467,8 @@ const drawCharacters = (characterImages) => {
 
 const show = (text, img, characters = [], smooth = true) => {
   return new Promise(async (resolve, reject) => {
-    if (img) {
+    // <<< 수정 시작: 배경 이미지가 변경될 때만 새로 로드하도록 수정
+    if (img && gameState.backgroundImage !== img) { // 현재 상태와 다를 때만!
       gameState.backgroundImage = img;
       const loadImageWithFallback = (filename, extension) => {
           return new Promise((res, rej) => {
@@ -485,6 +486,7 @@ const show = (text, img, characters = [], smooth = true) => {
           if (!loaded) console.warn(`배경 이미지 로드 실패: ${img}`);
       }
     }
+    // <<< 수정 끝
 
     gameState.characters = characters || [];
     const loadImage = (charName) => {
