@@ -1,9 +1,14 @@
 {
+  "__comment": "AI가 이미지 태그, 변수 초기화, 문법 수정을 진행한 버전입니다.",
   "main": [
+    {
+      "type": "js",
+      "scripts": "lovePoint = { '유진': 0, '참머': 0 }; flag = 'none';"
+    },
     {
       "type": "conv",
       "contents": [
-        [": 클릭하여 시작..", "title"]
+        ["클릭하여 시작...", "bg_title_screen"]
       ]
     },
     {
@@ -15,23 +20,23 @@
     {
       "type": "conv",
       "contents": [
-        [": (등굣길..)", "chammuh_normal"],
-        ["참머: 안녕 ${nickname}!"],
-        ["참머: 학교 같이 가자"],
-        ["오늘은 내가 드디어 고등학교에 입학하는 날이다."],
-        ["참머: ${nickname}?"],
-        ["뒤에서 날 부르는 저 애는 참머."],
-        ["성적은 물론이고, 예체능, 외모까지 전부 뛰어난 모범생이다."],
-        ["그런데 나는 어째서 참머와 친한척을 할 수 있냐면..."],
-        ["참머: ${nickname}! 듣고 있어?"],
-        ["${nickname}: 어...어"],
-        ["나는 참머와 어릴때 부터 알고 지낸 관계다."],
-        ["그래서 지금처럼 등교를 같이 하곤 한다."],
-        ["참머: 오늘은 입학 첫날이잖아, 늦으면 곤란해"],
-        ["${nickname}: 그래.. 먼저 가도 돼"],
-        ["참머: 아니야, 그래도 같이 가는 편이 좋잖아?"],
-        ["${nickname}: ..."],
-        ["${nickname}: 마음대로 해"]
+        ["(등굣길...)", "bg_street_only"],
+        ["참머: 안녕 ${nickname}!", "bg_street_chammuh_smile"],
+        ["참머: 학교 같이 가자", undefined],
+        ["오늘은 내가 드디어 고등학교에 입학하는 날이다.", "bg_street_only"],
+        ["참머: ${nickname}?", "bg_street_chammuh_curious"],
+        ["뒤에서 날 부르는 저 애는 참머.", "bg_street_chammuh_normal"],
+        ["성적은 물론이고, 예체능, 외모까지 전부 뛰어난 모범생이다.", undefined],
+        ["그런데 나는 어째서 참머와 친한척을 할 수 있냐면...", undefined],
+        ["참머: ${nickname}! 듣고 있어?", "bg_street_chammuh_annoyed"],
+        ["${nickname}: 어... 어.", undefined],
+        ["나는 참머와 어릴때 부터 알고 지낸 관계다.", "bg_street_chammuh_normal"],
+        ["그래서 지금처럼 등교를 같이 하곤 한다.", undefined],
+        ["참머: 오늘은 입학 첫날이잖아, 늦으면 곤란해", undefined],
+        ["${nickname}: 그래.. 먼저 가도 돼", undefined],
+        ["참머: 아니야, 그래도 같이 가는 편이 좋잖아?", "bg_street_chammuh_smile"],
+        ["${nickname}: ...", undefined],
+        ["${nickname}: 마음대로 해", undefined]
       ]
     },
     {
@@ -43,17 +48,17 @@
     {
       "type": "conv",
       "contents": [
-        [": (학교 내부)", "chammuh_normal"],
-        ["어디보자... 나는 분명 1학년 3반이었지"],
-        ["참머: ${nickname}는(은) 몇반이야?"],
-        ["${nickname}: 3반인데.."],
-        ["참머: 같은 반은 아니구나..."],
-        ["${nickname}: 그러네"],
-        ["차라리 다행이다."],
-        ["의외로 참머는 나와 같이 지내면서 의미심장한 행동을 할때가 있다."],
-        ["물론 그 행동으로 인해 내가 피해를 볼 때도 있었다..."],
-        ["참머: 그럼 이따 끝나고 봐"],
-        ["${nickname}: 응"]
+        ["(학교 내부)", "bg_school_hallway"],
+        ["어디보자... 나는 분명 1학년 3반이었지", undefined],
+        ["참머: ${nickname}는(은) 몇 반이야?", "bg_school_hallway_chammuh_curious"],
+        ["${nickname}: 3반인데..", undefined],
+        ["참머: 같은 반은 아니구나...", "bg_school_hallway_chammuh_sad"],
+        ["${nickname}: 그러네", undefined],
+        ["차라리 다행이다.", "bg_school_hallway"],
+        ["의외로 참머는 나와 같이 지내면서 의미심장한 행동을 할때가 있다.", undefined],
+        ["물론 그 행동으로 인해 내가 피해를 볼 때도 있었다...", undefined],
+        ["참머: 그럼 이따 끝나고 봐", "bg_school_hallway_chammuh_smile"],
+        ["${nickname}: 응", "bg_school_hallway"]
       ]
     },
     {
@@ -65,55 +70,55 @@
     {
       "type": "conv",
       "contents": [
-        [": (1-3 교실)", "chammuh_normal"],
-        ["${nickname}: 생각보단 빨리온건가?"],
-        ["이 시간에 등교한 학생이 얼마 없다니, 의외다."],
-        ["${nickname}: 좀 잘까..."],
-        ["몇 분 뒤"],
-        ["자고 일어나니 사람이 좀 모여있었다."],
-        ["하... 역시 내가 아는 얼굴이 하나도 없다."],
-        ["생각해보면 이 학교에 올 수 있게 된것도 참머덕분이었다."],
-        ["애초에 공부를 못하는 내가 참머랑 같은 학교에 다닐 수 있을리 없다."],
-        ["어차피 가고싶은 고등학교도 없었고 해서 참머를 따라왔던 것 뿐이다."],
-        ["???: 저기... 조금만 비켜줄수 있을까?"],
-        ["${nickname}: 어..? 어"],
-        ["자다보니 무의식적으로 옆자리쪽으로 누웠던듯하다."],
-        ["${nickname}: 아.. 미안"],
-        ["???: 괜찮아"],
-        ["자세히 보니 생각보다 예쁘다."],
-        ["참머보다 어른스러운 느낌의 외모?"],
-        ["???: 난 유진이야 너는?"],
-        ["${nickname}: 나는 ${nickname}(이)야"],
-        ["유진: 한달간 잘 지내보자 ${nickname}."],
-        ["${nickname}: 응"],
-        ["자리를 바꾸기까지의 기간은 한달인듯 하다."],
-        ["그것보다 보면 볼수록 예쁘다."],
-        ["게임이나 만화에서나 보던 캐릭터 디자인을 현실에서 보는것같다."],
-        ["유진: 왜그렇게 빤히 쳐다봐? 할말 있어?"]
+        ["(1-3 교실)", "bg_classroom_empty"],
+        ["${nickname}: 생각보단 빨리온 건가?", undefined],
+        ["이 시간에 등교한 학생이 얼마 없다니, 의외다.", undefined],
+        ["${nickname}: 좀 잘까...", undefined],
+        ["(몇 분 뒤)", "bg_classroom_students"],
+        ["자고 일어나니 사람이 좀 모여있었다.", undefined],
+        ["하... 역시 내가 아는 얼굴이 하나도 없다.", undefined],
+        ["생각해보면 이 학교에 올 수 있게 된 것도 참머 덕분이었다.", undefined],
+        ["애초에 공부를 못하는 내가 참머랑 같은 학교에 다닐 수 있을 리 없다.", undefined],
+        ["어차피 가고 싶은 고등학교도 없었고 해서 참머를 따라왔던 것뿐이다.", undefined],
+        ["???: 저기... 조금만 비켜줄 수 있을까?", "bg_classroom_yujin_normal"],
+        ["${nickname}: 어...? 어.", undefined],
+        ["자다 보니 무의식적으로 옆자리 쪽으로 누웠던 듯하다.", undefined],
+        ["${nickname}: 아.. 미안", undefined],
+        ["???: 괜찮아", "bg_classroom_yujin_smile"],
+        ["자세히 보니 생각보다 예쁘다.", undefined],
+        ["참머보다 어른스러운 느낌의 외모?", undefined],
+        ["???: 난 유진이야. 너는?", "bg_classroom_yujin_smile"],
+        ["${nickname}: 나는 ${nickname}(이)야", undefined],
+        ["유진: 한 달간 잘 지내보자 ${nickname}.", "bg_classroom_yujin_smile"],
+        ["${nickname}: 응", undefined],
+        ["자리를 바꾸기까지의 기간은 한 달인 듯하다.", "bg_classroom_yujin_normal"],
+        ["그것보다 보면 볼수록 예쁘다.", undefined],
+        ["게임이나 만화에서나 보던 캐릭터 디자인을 현실에서 보는 것 같다.", undefined],
+        ["유진: 왜 그렇게 빤히 쳐다봐? 할 말 있어?", "bg_classroom_yujin_curious"]
       ]
     },
     {
       "type": "ques",
       "content": "너무 뻔히 쳐다본 모양이다.",
       "options": {
-        "answers": ["아니... 예쁘게 생겨서 그만...", "그냥 귀여워서 (웃음기있게)", "아니... 아무것도 아니야."],
+        "answers": ["아니... 예쁘게 생겨서 그만...", "그냥 귀여워서 (웃음기 있게)", "아니... 아무것도 아니야."],
         "scripts": ["lovePoint['유진'] = (lovePoint['유진'] || 0) + 1", "lovePoint['유진'] = (lovePoint['유진'] || 0) + 1", ""],
-        "replies": ["유진: 초면에 그런 말은 안해줘도 돼...", "유진: 뭐야 그게..", "유진: 그래? 그럼 말고"]
+        "replies": ["유진: 초면에 그런 말은 안 해줘도 돼...", "유진: 뭐야 그게..", "유진: 그래? 그럼 말고"]
       }
     },
     {
       "type": "conv",
       "contents": [
-        ["담임선생님이 들어오신다."],
-        ["담임: 자 모두 있나요?"],
-        ["학생들: 네"],
-        ["담임: 오늘은 교과서 배부와 교장선생님 말씀,"],
-        ["담임: 학생대표 참머학생의 연설만 있겠습니다."],
-        ["역시 학생대표는 참머다."],
-        ["유진: 에... 참머라는 애 대단하네"],
-        ["${nickname}: 그러게..."],
-        ["참머의 능력에는 새삼 놀라게 된다."],
-        ["그것보다 학교는 빨리 끝날 것 같고... 집에 가서 뭐할지나 생각해야겠다."]
+        ["(담임선생님이 들어오신다.)", "bg_classroom_teacher"],
+        ["담임: 자, 모두 있나요?", undefined],
+        ["학생들: 네", undefined],
+        ["담임: 오늘은 교과서 배부와 교장선생님 말씀,", undefined],
+        ["담임: 학생대표 참머 학생의 연설만 있겠습니다.", undefined],
+        ["역시 학생대표는 참머다.", "bg_classroom_students"],
+        ["유진: 에... 참머라는 애 대단하네", "bg_classroom_yujin_normal"],
+        ["${nickname}: 그러게...", undefined],
+        ["참머의 능력에는 새삼 놀라게 된다.", undefined],
+        ["그것보다 학교는 빨리 끝날 것 같고... 집에 가서 뭐할지나 생각해야겠다.", undefined]
       ]
     },
     {
@@ -130,18 +135,18 @@
     {
       "type": "conv",
       "contents": [
-        ["유진: 왔구나"],
-        ["${nickname}: 어"],
-        ["어떡하지... 아직 참머랑 아는 사이라는 말은 하지 않았다."],
-        ["유진: 일단 연설이 끝나고도 학생대표는 할일이 있다고 했으니 우리보단 늦게 나올거야"],
-        ["${nickname}: 그래"],
-        ["유진: 그나저나 학생대표라고 하면 얼마나 대단한 사람일까?"],
-        ["${nickname}: 그..그러게"]
+        ["유진: 왔구나", "bg_school_gate_yujin_smile"],
+        ["${nickname}: 어", undefined],
+        ["어떡하지... 아직 참머랑 아는 사이라는 말은 하지 않았다.", "bg_school_gate_yujin_normal"],
+        ["유진: 일단 연설이 끝나고도 학생대표는 할 일이 있다고 했으니 우리보단 늦게 나올 거야", undefined],
+        ["${nickname}: 그래", undefined],
+        ["유진: 그나저나 학생대표라고 하면 얼마나 대단한 사람일까?", "bg_school_gate_yujin_curious"],
+        ["${nickname}: 그.. 그러게", undefined]
       ]
     },
     {
       "type": "ques",
-      "content": "지금이라도 참머와 아는 사이라는걸 말할까?",
+      "content": "지금이라도 참머와 아는 사이라는 걸 말할까?",
       "options": {
         "answers": ["예", "아니오"],
         "scenes": ["1-4-1. 예", "1-4-2. 아니오"]
@@ -152,12 +157,12 @@
     {
       "type": "conv",
       "contents": [
-        ["${nickname}: 난 사실 참머랑 어렸을때부터 아는 사이야"],
-        ["유진: 그래? 참머는 어떤 사람이야?"],
-        ["${nickname}: 완벽한 사람이지"],
-        ["유진: 완벽한 사람... 그런게 있을까?"],
-        ["${nickname}: 일단 내가 본 사람중엔 가장 완벽에 가까워"],
-        ["유진: 만나보면 자세히 알게 되겠지"]
+        ["${nickname}: 난 사실 참머랑 어렸을 때부터 아는 사이야", "bg_school_gate_yujin_normal"],
+        ["유진: 그래? 참머는 어떤 사람이야?", "bg_school_gate_yujin_suprised"],
+        ["${nickname}: 완벽한 사람이지", undefined],
+        ["유진: 완벽한 사람... 그런 게 있을까?", "bg_school_gate_yujin_curious"],
+        ["${nickname}: 일단 내가 본 사람 중엔 가장 완벽에 가까워", undefined],
+        ["유진: 만나보면 자세히 알게 되겠지", "bg_school_gate_yujin_normal"]
       ]
     },
     {
@@ -167,19 +172,14 @@
     {
       "type": "conv",
       "contents": [
-        ["참머가 온다."],
-        ["참머: ${nickname}! 그리고 옆에있는 애는... 누구야?"],
-        ["${nickname}: 얘는 유진이야"]
-      ]
-    },
-    {
-      "type": "conv",
-      "contents": [
-        ["유진: 만나서 반가워 꼭 널 만나보고 싶었어"],
-        ["참머: 어?.. 어.. 그래"],
-        ["참머: 일단 여기서 얘기하는것도 좀 그러니 ${nickname}네 집에서 얘기하는게 어때?"],
-        ["유진: 그래"],
-        ["${nickname}: 어?"]
+        ["(참머가 온다.)", "bg_school_gate_yujin_chammuh"],
+        ["참머: ${nickname}! 그리고 옆에 있는 애는... 누구야?", "bg_school_gate_yujin_chammuh_c_curious"],
+        ["${nickname}: 얘는 유진이야", undefined],
+        ["유진: 만나서 반가워. 꼭 널 만나보고 싶었어", "bg_school_gate_yujin_chammuh_y_smile"],
+        ["참머: 어...? 어... 그래.", "bg_school_gate_yujin_chammuh_c_normal"],
+        ["참머: 일단 여기서 얘기하는 것도 좀 그러니 ${nickname}네 집에서 얘기하는 게 어때?", "bg_school_gate_yujin_chammuh_c_smile"],
+        ["유진: 그래", "bg_school_gate_yujin_chammuh_y_smile"],
+        ["${nickname}: 어?", undefined]
       ]
     },
     {
@@ -191,22 +191,17 @@
     {
       "type": "conv",
       "contents": [
-        ["${nickname}: 참머는 언제 나올까?"],
-        ["유진: 글쎄... 좀 있으면 나올거야"],
-        ["참머: ${nickname}! 그리고 옆에있는 애는... 누구야?"],
-        ["${nickname}: 얘는 유진이야"],
-        ["유진: 너 참머랑 아는사이였어?"],
-        ["${nickname}: 뭐... 그렇지"]
-      ]
-    },
-    {
-      "type": "conv",
-      "contents": [
-        ["유진: 만나서 반가워 꼭 널 만나보고 싶었어"],
-        ["참머: 어?.. 어.. 그래"],
-        ["참머: 일단 여기서 얘기하는것도 좀 그러니 ${nickname}네 집에서 얘기하는게 어때?"],
-        ["유진: 그래"],
-        ["${nickname}: 어?"]
+        ["${nickname}: 참머는 언제 나올까?", "bg_school_gate_yujin_normal"],
+        ["유진: 글쎄... 좀 있으면 나올 거야", undefined],
+        ["참머: ${nickname}! 그리고 옆에 있는 애는... 누구야?", "bg_school_gate_yujin_chammuh_c_curious"],
+        ["${nickname}: 얘는 유진이야", undefined],
+        ["유진: 너 참머랑 아는 사이였어?", "bg_school_gate_yujin_chammuh_y_suprised"],
+        ["${nickname}: 뭐... 그렇지", undefined],
+        ["유진: 만나서 반가워. 꼭 널 만나보고 싶었어", "bg_school_gate_yujin_chammuh_y_smile"],
+        ["참머: 어...? 어... 그래.", "bg_school_gate_yujin_chammuh_c_normal"],
+        ["참머: 일단 여기서 얘기하는 것도 좀 그러니 ${nickname}네 집에서 얘기하는 게 어때?", "bg_school_gate_yujin_chammuh_c_smile"],
+        ["유진: 그래", "bg_school_gate_yujin_chammuh_y_smile"],
+        ["${nickname}: 어?", undefined]
       ]
     },
     {
@@ -218,14 +213,14 @@
     {
       "type": "conv",
       "contents": [
-        [": (주인공의 집)"],
-        ["참머: 그래서 나는 왜 찾은거야?"],
-        ["유진: 그냥... 개인적인 호기심? 대단한 사람을 만나보고 싶었어"],
-        ["참머: 나도 그렇게 대단한 사람은 아닌데..."],
-        ["유진: 대단하잖아? 학생대표로 연설도 하고..."],
-        ["뭔가 끼어선 안될곳에 끼어버린 느낌이다."],
-        ["${nickname}: 둘이 천천히 말하고있어 난 방에 들어가서 쉬고있을게"],
-        ["참머, 유진: 응."]
+        ["(주인공의 집)", "bg_living_room_yujin_chammuh"],
+        ["참머: 그래서 나는 왜 찾은 거야?", "bg_living_room_yujin_chammuh_c_normal"],
+        ["유진: 그냥... 개인적인 호기심? 대단한 사람을 만나보고 싶었어", "bg_living_room_yujin_chammuh_y_smile"],
+        ["참머: 나도 그렇게 대단한 사람은 아닌데...", "bg_living_room_yujin_chammuh_c_humble"],
+        ["유진: 대단하잖아? 학생대표로 연설도 하고...", "bg_living_room_yujin_chammuh_y_smile"],
+        ["뭔가 끼어선 안 될 곳에 끼어버린 느낌이다.", "bg_living_room_yujin_chammuh"],
+        ["${nickname}: 둘이 천천히 말하고 있어. 난 방에 들어가서 쉬고 있을게", undefined],
+        ["참머, 유진: 응.", "bg_living_room_yujin_chammuh"]
       ]
     },
     {
@@ -237,28 +232,28 @@
     {
       "type": "conv",
       "contents": [
-        [": (주인공의 방)"],
-        ["첫날부터 이게 뭐람"],
-        ["뭔가 많은 일이 있었다."],
-        ["여러모로 생각해보니 졸려졌다."],
-        ["좀 잘까...."],
-        [" : 1시간 뒤 "],
-        ["참머: ${nickname}.... ${nickname}!"],
-        ["${nickname}: 어..?"],
-        ["참머: 유진은 갔어 그나저나 오늘 먹을 저녁은 있는거야?"],
-        ["${nickname}: 아니..."],
-        ["참머: 그럴줄 알았어"],
-        ["참머: 간단하게라도 차려놓고 갈테니까 먹어"],
-        ["${nickname}: 응..."],
-        ["참머가 해준 저녁이라니 기대되네..."],
-        ["그나저나 문을 잠군것같은데..."],
-        ["참머: 다 됐어"],
-        ["참머: 맛있게 먹고, 난 이제 집에 가볼게 마음대로 ${nickname}네 집 오자고 해서 미안해~"],
-        ["${nickname}: 그래도 밥은 해줬으니까 고마워"],
-        ["참머: 내일 보자"],
-        ["${nickname}: 응"],
-        ["..."],
-        ["맛있다."]
+        ["(주인공의 방)", "bg_my_room_dark"],
+        ["첫날부터 이게 뭐람", undefined],
+        ["뭔가 많은 일이 있었다.", undefined],
+        ["여러모로 생각해보니 졸려졌다.", undefined],
+        ["좀 잘까...", undefined],
+        ["(1시간 뒤)", "bg_my_room_normal"],
+        ["참머: ${nickname}.... ${nickname}!", "bg_my_room_chammuh_normal"],
+        ["${nickname}: 어...?", undefined],
+        ["참머: 유진은 갔어. 그나저나 오늘 먹을 저녁은 있는 거야?", "bg_my_room_chammuh_normal"],
+        ["${nickname}: 아니...", undefined],
+        ["참머: 그럴 줄 알았어", "bg_my_room_chammuh_sigh"],
+        ["참머: 간단하게라도 차려놓고 갈 테니까 먹어", "bg_my_room_chammuh_normal"],
+        ["${nickname}: 응...", undefined],
+        ["참머가 해준 저녁이라니 기대되네...", undefined],
+        ["그나저나 문을 잠근 것 같은데...", undefined],
+        ["참머: 다 됐어", "bg_my_room_chammuh_smile"],
+        ["참머: 맛있게 먹고, 난 이제 집에 가볼게. 마음대로 ${nickname}네 집 오자고 해서 미안해~", undefined],
+        ["${nickname}: 그래도 밥은 해 줬으니까 고마워", undefined],
+        ["참머: 내일 보자", "bg_my_room_chammuh_smile"],
+        ["${nickname}: 응", undefined],
+        ["...", "bg_kitchen_food"],
+        ["맛있다.", undefined]
       ]
     },
     {
@@ -270,11 +265,11 @@
     {
       "type": "conv",
       "contents": [
-        [": (잠자기 전)"],
-        ["여러모로 알찬 하루였다."],
-        ["참머는 여전히 날 잘 챙겨주지만..."],
-        ["유진이라는 애는... 예뻤다."],
-        ["...생각을 그만하고 자자."]
+        ["(잠자기 전)", "bg_my_room_night"],
+        ["여러모로 알찬 하루였다.", undefined],
+        ["참머는 여전히 날 잘 챙겨주지만...", undefined],
+        ["유진이라는 애는... 예뻤다.", undefined],
+        ["...생각을 그만하고 자자.", undefined]
       ]
     },
     {
@@ -286,13 +281,13 @@
     {
       "type": "conv",
       "contents": [
-        [": (다음 날 등굣길)"],
-        ["오늘은 참머가 학생회 일로 먼저 등교했다."],
-        ["편하긴 하지만... 조금 허전한가?"],
-        ["???: ${nickname}?"],
-        ["뒤를 돌아보니 유진이가 서 있었다."],
-        ["유진: 안녕. 좋은 아침이야."],
-        ["${nickname}: 어.. 안녕."]
+        ["(다음 날 등굣길)", "bg_street_only"],
+        ["오늘은 참머가 학생회 일로 먼저 등교했다.", undefined],
+        ["편하긴 하지만... 조금 허전한가?", undefined],
+        ["???: ${nickname}?", "bg_street_yujin_normal"],
+        ["뒤를 돌아보니 유진이가 서 있었다.", undefined],
+        ["유진: 안녕. 좋은 아침이야.", "bg_street_yujin_smile"],
+        ["${nickname}: 어... 안녕.", undefined]
       ]
     },
     {
@@ -301,7 +296,7 @@
       "options": {
         "answers": ["그래, 같이 가자", "미안, 먼저 갈게"],
         "scripts": ["lovePoint['유진'] = (lovePoint['유진'] || 0) + 1", ""],
-        "replies": ["유진: 고마워. (활짝 웃는다)", "유진: 어? 으, 응... 알겠어. 이따 봐."],
+        "replies": ["유진: 고마워! (활짝 웃는다)", "유진: 어? 으, 응... 알겠어. 이따 봐."],
         "scenes": ["2-2. 유진과 등교", "2-3. 교실"]
       }
     }
@@ -310,16 +305,16 @@
     {
       "type": "conv",
       "contents": [
-        ["나란히 걸으니 유진에게서 좋은 향기가 난다."],
-        ["유진: 어제는 고마웠어. 너희 집까지 가게 돼서 미안해."],
-        ["${nickname}: 아니야, 괜찮아."],
-        ["유진: 참머... 랑은 정말 친한가 봐. 어제 보니까 너희 집에도 익숙한 것 같던데."],
-        ["${nickname}: 뭐... 어릴 때부터 봐서..."],
-        ["유진: 그렇구나. 참, ${nickname}는 주말에 보통 뭐 해?"],
-        ["${nickname}: 나? 그냥... 집에서 게임이나..."],
-        ["유진: 후후. 그렇구나. 의외로 평범하네."],
-        ["${nickname}: (의외라니...)"],
-        ["그렇게 대화를 나누다 보니 금방 학교에 도착했다."]
+        ["(유진과 나란히 걸으니 좋은 향기가 난다.)", "bg_street_yujin_smile"],
+        ["유진: 어제는 고마웠어. 너희 집까지 가게 돼서 미안해.", undefined],
+        ["${nickname}: 아니야, 괜찮아.", undefined],
+        ["유진: 참머... 랑은 정말 친한가 봐. 어제 보니까 너희 집에도 익숙한 것 같던데.", "bg_street_yujin_curious"],
+        ["${nickname}: 뭐... 어릴 때부터 봐서...", undefined],
+        ["유진: 그렇구나. 참, ${nickname}는 주말에 보통 뭐 해?", "bg_street_yujin_smile"],
+        ["${nickname}: 나? 그냥... 집에서 게임이나...", undefined],
+        ["유진: 후후. 그렇구나. 의외로 평범하네.", "bg_street_yujin_laugh"],
+        ["${nickname}: (의외라니...)", undefined],
+        ["그렇게 대화를 나누다 보니 금방 학교에 도착했다.", "bg_school_gate_yujin_smile"]
       ]
     },
     {
@@ -331,14 +326,15 @@
     {
       "type": "conv",
       "contents": [
-        [": (1-3 교실, 점심시간)"],
-        ["오전 수업이 순식간에 지나갔다."],
-        ["유진: ${nickname}. 밥 같이 먹을래?"],
-        ["내가 대답하기도 전에, 교실 문이 열리고 참머가 보였다."],
-        ["참머: ${nickname}! 밥 같이 먹자. 오늘 너 좋아하는 반찬 나왔어."],
-        ["참머는 유진을 한번 쓱 보더니, 나에게 웃으며 말했다."],
-        ["유진: ..."],
-        ["참머: ...?"]
+        ["(1-3 교실, 점심시간)", "bg_classroom_lunchtime"],
+        ["오전 수업이 순식간에 지나갔다.", "trigger": "lovePoint['유진'] == 0", "bg_classroom_lunchtime"],
+        ["오전 수업이 순식간에 지나갔다.", "trigger": "lovePoint['유진'] > 0", "bg_classroom_yujin_normal"],
+        ["유진: ${nickname}. 밥 같이 먹을래?", "bg_classroom_yujin_smile"],
+        ["내가 대답하기도 전에, 교실 문이 열리고 참머가 보였다.", undefined],
+        ["참머: ${nickname}! 밥 같이 먹자. 오늘 너 좋아하는 반찬 나왔어.", "bg_classroom_yujin_chammuh_c_smile"],
+        ["참머는 유진을 한번 쓱 보더니 나에게 웃으며 말했다.", undefined],
+        ["유진: ...", "bg_classroom_yujin_chammuh_y_silent"],
+        ["참머: ...?", "bg_classroom_yujin_chammuh_c_curious"]
       ]
     },
     {
@@ -355,16 +351,16 @@
     {
       "type": "conv",
       "contents": [
-        ["${nickname}: 미안 유진아, 난 참머랑..."],
-        ["유진: ...알겠어. 그럼 나중에 봐."],
-        ["유진은 조금 실망한 표정으로 고개를 돌렸다."],
-        ["참머: 가자, ${nickname}! (내 팔짱을 낀다)"],
-        ["${nickname}: (아... 유진이 표정이 안 좋았는데...)"],
-        ["참머: ${nickname}? 왜 그래? 아, 혹시 유진이라는 애 때문에 그래?"],
-        ["참머: 걔, 어제 보니까 좀... ${nickname}한테 관심 있는 것 같던데."],
-        ["참머: ...너무 친하게 지내지 마. ${nickname}는 나랑 있기로 했잖아."],
-        ["${nickname}: ...그런 약속 한 적 없어."],
-        ["참머: 후후, 농담이야. 얼른 가자."]
+        ["${nickname}: 미안 유진아, 난 참머랑...", "bg_classroom_yujin_chammuh_y_sad"],
+        ["유진: ...알겠어. 그럼 나중에 봐.", undefined],
+        ["유진은 조금 실망한 표정으로 고개를 돌렸다.", "bg_classroom_chammuh_c_smile"],
+        ["참머: 가자, ${nickname}! (내 팔짱을 낀다)", "bg_cafeteria_chammuh_happy"],
+        ["${nickname}: (아... 유진이 표정이 안 좋았는데...)", undefined],
+        ["참머: ${nickname}? 왜 그래? 아, 혹시 유진이라는 애 때문에 그래?", "bg_cafeteria_chammuh_curious"],
+        ["참머: 걔, 어제 보니까 좀... ${nickname}한테 관심 있는 것 같던데.", undefined],
+        ["참머: ...너무 친하게 지내지 마. ${nickname}는 나랑 있기로 했잖아.", "bg_cafeteria_chammuh_cold"],
+        ["${nickname}: ...그런 약속 한 적 없어.", undefined],
+        ["참머: 후후, 농담이야. 얼른 가자.", "bg_cafeteria_chammuh_smile"]
       ]
     },
     {
@@ -376,15 +372,15 @@
     {
       "type": "conv",
       "contents": [
-        ["${nickname}: 미안 참머, 오늘은 유진이랑 먹기로 해서."],
-        ["참머: ..."],
-        ["참머의 미소가 순간 굳었다."],
-        ["참머: ...그래? 알았어. 그럼... 이따 봐."],
-        ["참머는 어딘가 차가운 표정으로 돌아갔다."],
-        ["유진: ...괜찮아?"],
-        ["${nickname}: 어? 뭐가?"],
-        ["유진: 아니야. 가자. (작게 웃는다)"],
-        ["유진과 함께 밥을 먹으러 갔다. 기분 탓인지, 등 뒤가 서늘했다."]
+        ["${nickname}: 미안 참머, 오늘은 유진이랑 먹기로 해서.", "bg_classroom_yujin_chammuh_c_cold"],
+        ["참머: ...", undefined],
+        ["참머의 미소가 순간 굳었다.", undefined],
+        ["참머: ...그래? 알았어. 그럼... 이따 봐.", undefined],
+        ["참머는 어딘가 차가운 표정으로 돌아섰다.", "bg_classroom_yujin_smile"],
+        ["유진: ...괜찮아?", "bg_cafeteria_yujin_worried"],
+        ["${nickname}: 어? 뭐가?", undefined],
+        ["유진: 아니야. 가자. (작게 웃는다)", "bg_cafeteria_yujin_smile"],
+        ["유진과 함께 밥을 먹으러 갔다. 기분 탓인지, 등 뒤가 서늘했다.", undefined]
       ]
     },
     {
@@ -396,13 +392,13 @@
     {
       "type": "conv",
       "contents": [
-        ["${nickname}: 아... 나 오늘 속이 안 좋아서. 둘이 먹어."],
-        ["참머: ...그래? 어디 아픈 거야? 보건실 가줄까?"],
-        ["유진: ...괜찮아? 약이라도..."],
-        ["${nickname}: 아냐! 괜찮아. 그냥 좀 엎드려 있을게."],
-        ["두 사람의 시선이 부담스러워 대충 둘러댔다."],
-        ["참머와 유진은 잠시 나를 보더니, 각자 밥을 먹으러 갔다."],
-        ["하... 피곤하다."]
+        ["${nickname}: 아... 나 오늘 속이 안 좋아서. 둘이 먹어.", "bg_classroom_yujin_chammuh"],
+        ["참머: ...그래? 어디 아픈 거야? 보건실 가줄까?", "bg_classroom_yujin_chammuh_c_worried"],
+        ["유진: ...괜찮아? 약이라도...", "bg_classroom_yujin_chammuh_y_worried"],
+        ["${nickname}: 아냐! 괜찮아. 그냥 좀 엎드려 있을게.", undefined],
+        ["두 사람의 시선이 부담스러워 대충 둘러댔다.", "bg_classroom_desk_alone"],
+        ["참머와 유진은 잠시 나를 보더니, 각자 밥을 먹으러 갔다.", undefined],
+        ["하... 피곤하다.", undefined]
       ]
     },
     {
@@ -414,11 +410,11 @@
     {
       "type": "conv",
       "contents": [
-        [": (주말 아침)"],
-        ["모처럼 늦잠을 자고 일어났는데, 핸드폰이 울리고 있었다."],
-        ["메시지가 두 개 와 있다."],
-        ["[참머: ${nickname}! 오늘 시간 있어? 오랜만에 우리 어릴 때 가던 공원이라도 갈래?]"],
-        ["[유진: ${nickname}. 혹시 오늘 시간 괜찮으면... 공부 좀 알려줄 수 있을까? 사례는 할게! 어제 참머한테 물어보긴 좀 그래서...]"]
+        ["(주말 아침)", "bg_my_room_morning"],
+        ["모처럼 늦잠을 자고 일어났는데, 핸드폰이 울리고 있었다.", "bg_phone_messages"],
+        ["메시지가 두 개 와 있다.", undefined],
+        ["[참머: ${nickname}! 오늘 시간 있어? 오랜만에 우리 어릴 때 가던 공원이라도 갈래?]", undefined],
+        ["[유진: ${nickname}. 혹시 오늘 시간 괜찮으면... 공부 좀 알려줄 수 있을까? 사례는 할게! 어제 참머한테 물어보긴 좀 그래서...]", undefined]
       ]
     },
     {
@@ -426,7 +422,7 @@
       "content": "누구의 제안을 받아들일까?",
       "options": {
         "answers": ["참머와 공원에 간다", "유진과 공부를 한다", "둘 다 거절하고 쉰다"],
-        "scripts": ["lovePoint['참머'] = (lovePoint['참머'] || 0) + 5", "lovePoint['유진'] = (lovePoint['유진'] || 0) + 5", ""],
+        "scripts": ["lovePoint['참머'] = (lovePoint['참머'] || 0) + 5; flag = '참머루트';", "lovePoint['유진'] = (lovePoint['유진'] || 0) + 5; flag = '유진루트';", "flag = '솔로루트';"],
         "scenes": ["3-2. 참머와 공원", "3-3. 유진과 도서관", "3-4. 혼자인 주말"]
       }
     }
@@ -435,27 +431,23 @@
     {
       "type": "conv",
       "contents": [
-        [": (공원)"],
-        ["${nickname}: (유진에게는 미안하지만, 공부는 좀...)"],
-        ["참머: ${nickname}! 여기야!"],
-        ["참머는 옛날과 똑같은 미소로 손을 흔들고 있었다."],
-        ["참머: 와줘서 고마워. 요즘 너랑 같이 있을 시간이 없었잖아."],
-        ["${nickname}: 학생회 일로 바쁜 건 너잖아."],
-        ["참머: 그래도! 난 ${nickname}랑 있는 게 제일 좋아."],
-        ["참머: ...있지, ${nickname}. 너 유진이랑... 요즘 친하게 지내?"],
-        ["${nickname}: 그냥... 같은 반 짝이니까."],
-        ["참머: ...그래. 걔, 좀 이상한 애 같아. 조심해."],
-        ["${nickname}: 이상하다니? 그냥 평범해 보이는데."],
-        ["참머: 그냥... 내 감이 그래. ${nickname}는 아무것도 몰라도 돼. 나만 믿으면 돼. 알았지?"],
-        ["참머의 눈이 웃고 있지 않았다. 어릴 적, 나 때문에 누군가에게 상처를 줬을 때의... 바로 그 눈이다."],
-        ["(어릴 적 나를 괴롭히던 남자애가 다음날 울면서 전학을 갔던 일이 떠올랐다.)"],
-        ["(참머가 그 애에게 무슨 짓을 했는지는... 아직도 모른다.)"],
-        ["${nickname}: ...어. 알았어."]
+        ["(공원)", "bg_park_day"],
+        ["${nickname}: (유진에게는 미안하지만, 공부는 좀...)", undefined],
+        ["참머: ${nickname}! 여기야!", "bg_park_chammuh_happy"],
+        ["참머는 옛날과 똑같은 미소로 손을 흔들고 있었다.", undefined],
+        ["참머: 와줘서 고마워. 요즘 너랑 같이 있을 시간이 없었잖아.", "bg_park_chammuh_smile"],
+        ["${nickname}: 학생회 일로 바쁜 건 너잖아.", undefined],
+        ["참머: 그래도! 난 ${nickname}랑 있는 게 제일 좋아.", "bg_park_chammuh_happy"],
+        ["참머: ...있지, ${nickname}. 너, 유진이랑... 요즘 친하게 지내?", "bg_park_chammuh_serious"],
+        ["${nickname}: 그냥... 같은 반 짝이니까.", undefined],
+        ["참머: ...그래. 걔, 좀 이상한 애 같아. 조심해.", "bg_park_chammuh_cold"],
+        ["${nickname}: 이상하다니? 그냥 평범해 보이는데.", undefined],
+        ["참머: 그냥... 내 감이 그래. ${nickname}는 아무것도 몰라도 돼. 나만 믿으면 돼. 알았지?", "bg_park_chammuh_yandere_smile"],
+        ["참머의 눈이 웃고 있지 않았다. 어릴 적, 나 때문에 누군가에게 상처를 줬을 때의... 바로 그 눈이다.", "bg_park_chammuh_cold_eyes"],
+        ["(어릴 적 나를 괴롭히던 남자애가 다음날 울면서 전학을 갔던 일이 떠올랐다.)", undefined],
+        ["(참머가 그 애에게 무슨 짓을 했는지는... 아직도 모른다.)", undefined],
+        ["${nickname}: ...어. 알았어.", undefined]
       ]
-    },
-    {
-      "type": "js",
-      "scripts": "flag = '참머루트'"
     },
     {
       "type": "scene",
@@ -466,29 +458,25 @@
     {
       "type": "conv",
       "contents": [
-        [": (도서관)"],
-        ["${nickname}: (참머에게는 미안하지만, 공원은 좀...)"],
-        ["유진: 와줘서 고마워, ${nickname}."],
-        ["유진은 도서관 한쪽에 자리를 잡아놓고 날 기다리고 있었다."],
-        ["${nickname}: 뭘 알려달라는 거야? 나도 공부 못하는데."],
-        ["유진: 아니야. 넌 참머랑 어릴 때부터 친구였잖아. 걔랑 같이 이 학교에 왔다는 것만으로도 대단한 거지."],
-        ["${nickname}: ...그건 참머가 도와줘서..."],
-        ["유진: 겸손하긴. 자, 여기. 이 문제..."],
-        ["공부를 하다 보니, 유진이 생각보다 더 어른스럽고 똑똑하다는 걸 알게 됐다."],
-        ["유진: ...사실, 공부는 핑계였어."],
-        ["${nickname}: 어?"],
-        ["유진: 너랑... 좀 더 친해지고 싶어서. 이상해?"],
-        ["${nickname}: ...아니."],
-        ["유진: (웃음) 다행이다. ...있지, 참머... 걔 좀 무섭지 않아?"],
-        ["${nickname}: 무섭다니? 완벽해서?"],
-        ["유진: 아니. 가끔... 날 쳐다보는 눈빛이... 꼭..."],
-        ["유진: ...아니야. 내가 예민한가 봐. 자, 계속하자!"],
-        ["유진은 애써 웃었지만, 그 미소는 어딘가 불안해 보였다."]
+        ["(도서관)", "bg_library_day"],
+        ["${nickname}: (참머에게는 미안하지만, 공원은 좀...)", undefined],
+        ["유진: 와줘서 고마워, ${nickname}.", "bg_library_yujin_smile"],
+        ["유진은 도서관 한쪽에 자리를 잡아놓고 날 기다리고 있었다.", undefined],
+        ["${nickname}: 뭘 알려달라는 거야? 나도 공부 못하는데.", undefined],
+        ["유진: 아니야. 넌 참머랑 어릴 때부터 친구였잖아. 걔랑 같이 이 학교에 왔다는 것만으로도 대단한 거지.", "bg_library_yujin_normal"],
+        ["${nickname}: ...그건 참머가 도와줘서...", undefined],
+        ["유진: 겸손하긴. 자, 여기. 이 문제...", undefined],
+        ["공부를 하다 보니, 유진이 생각보다 더 어른스럽고 똑똑하다는 것을 알게 됐다.", "bg_library_yujin_study"],
+        ["유진: ...사실, 공부는 핑계였어.", "bg_library_yujin_blush"],
+        ["${nickname}: 어?", undefined],
+        ["유진: 너랑... 좀 더 친해지고 싶어서. 이상해?", undefined],
+        ["${nickname}: ...아니.", undefined],
+        ["유진: (웃음) 다행이다. ...있지, 참머... 걔 좀 무섭지 않아?", "bg_library_yujin_worried"],
+        ["${nickname}: 무섭다니? 완벽해서?", undefined],
+        ["유진: 아니. 가끔... 날 쳐다보는 눈빛이... 꼭...", undefined],
+        ["유진: ...아니야. 내가 예민한가 봐. 자, 계속하자!", "bg_library_yujin_smile"],
+        ["유진은 애써 웃었지만, 그 미소는 어딘가 불안해 보였다.", undefined]
       ]
-    },
-    {
-      "type": "js",
-      "scripts": "flag = '유진루트'"
     },
     {
       "type": "scene",
@@ -499,16 +487,12 @@
     {
       "type": "conv",
       "contents": [
-        [": (주인공의 방)"],
-        ["[${nickname}: 미안, 둘 다 선약이 있어서.]"],
-        ["거짓말을 하고 하루 종일 게임을 했다."],
-        ["편하긴 한데... 왠지 모르게 찜찜하다."],
-        ["다음 날 학교에서 두 사람의 시선이 느껴지는 것 같았다."]
+        ["(주인공의 방)", "bg_my_room_gaming"],
+        ["[${nickname}: 미안, 둘 다 선약이 있어서.]", undefined],
+        ["거짓말을 하고 하루 종일 게임을 했다.", undefined],
+        ["편하긴 한데... 왠지 모르게 찜찜하다.", undefined],
+        ["다음 날 학교에서 두 사람의 시선이 느껴지는 것 같았다.", "bg_classroom_alone"]
       ]
-    },
-    {
-      "type": "js",
-      "scripts": "flag = '솔로루트'"
     },
     {
       "type": "scene",
@@ -519,9 +503,9 @@
     {
       "type": "conv",
       "contents": [
-        [": (몇 주 뒤, 축제 준비 기간)"],
-        ["시간은 흘러 학교 축제 기간이 되었다."],
-        ["우리 반은 귀신의 집을 하기로 했다."]
+        ["(몇 주 뒤, 축제 준비 기간)", "bg_classroom_prep"],
+        ["시간은 흘러 학교 축제 기간이 되었다.", undefined],
+        ["우리 반은 귀신의 집을 하기로 했다.", undefined]
       ]
     },
     {
@@ -541,6 +525,7 @@
     },
     {
       "type": "scene",
+      "trigger": "flag == 'none'",
       "name": "4-4. 솔로루트"
     }
   ],
@@ -548,24 +533,24 @@
     {
       "type": "conv",
       "contents": [
-        ["유진은 그날 이후로 나에게 쌀쌀맞게 대한다."],
-        ["${nickname}: (뭐... 어쩔 수 없지.)"],
-        ["참머: ${nickname}! 귀신의 집 준비, 재밌다!"],
-        ["참머는 요즘들어 기분이 매우 좋아 보인다."],
-        ["축제 당일. 참머가 학생회 일로 잠시 자리를 비웠다."],
-        ["유진: ...${nickname}. 잠깐 얘기 좀 해."],
-        ["유진은 나를 창고로 불렀다."],
-        ["유진: 너... 참머가 어떤 애인지 알고나 만나?"],
-        ["${nickname}: 무슨 소리야?"],
-        ["유진: 걔가 나한테 뭐라고 했는지 알아? ' ${nickname}한테서 떨어져. 안 그러면 네가 가장 아끼는 걸 망가뜨려 버릴 거야.' 라고 했어."],
-        ["${nickname}: ...!"],
-        ["유진: 너희 어릴 때... 그 전학 간 남자애. 걔... 참머 때문에 다리 부러졌었대. 부모님이 쉬쉬해서 넘어갔지만."],
-        ["${nickname}: (...그랬구나. 역시...)"],
-        ["유진: 무섭지 않아? 넌 걔 옆에서... 괜찮아?"],
-        ["그때, 창고 문이 열렸다."],
-        ["참머: ${nickname}. ...유진? 둘이 여기서 뭐 해?"],
-        ["참머의 손에는 커터칼이 들려 있었다. (축제 소품 준비용이겠지만)"],
-        ["참머: 유진아. 내가 말했지. ${nickname}한테 접근하지 말라고."]
+        ["유진은 그날 이후로 나에게 쌀쌀맞게 대한다.", "bg_classroom_prep"],
+        ["${nickname}: (뭐... 어쩔 수 없지.)", undefined],
+        ["참머: ${nickname}! 귀신의 집 준비, 재밌다!", "bg_classroom_prep_chammuh_happy"],
+        ["참머는 요즘 들어 기분이 매우 좋아 보인다.", undefined],
+        ["(축제 당일. 참머가 학생회 일로 잠시 자리를 비웠다.)", "bg_classroom_festival"],
+        ["유진: ...${nickname}. 잠깐 얘기 좀 해.", "bg_classroom_yujin_serious"],
+        ["유진은 나를 창고로 불렀다.", "bg_school_warehouse_yujin_serious"],
+        ["유진: 너... 참머가 어떤 애인지 알고나 만나는 거야?", undefined],
+        ["${nickname}: 무슨 소리야?", undefined],
+        ["유진: 걔가 나한테 뭐라고 했는지 알아? ' ${nickname}한테서 떨어져. 안 그러면 네가 가장 아끼는 걸 망가뜨려 버릴 거야.' 라고 했어.", "bg_school_warehouse_yujin_angry"],
+        ["${nickname}: ...!", undefined],
+        ["유진: 너희 어릴 때... 그 전학 간 남자애. 걔... 참머 때문에 다리 부러졌었대. 부모님이 쉬쉬해서 넘어갔지만.", "bg_school_warehouse_yujin_scared"],
+        ["${nickname}: (...그랬구나. 역시...)", undefined],
+        ["유진: 무섭지 않아? 넌 걔 옆에서... 괜찮아?", undefined],
+        ["(그때, 창고 문이 열렸다.)", "bg_school_warehouse_yujin_chammuh_c_cold"],
+        ["참머: ${nickname}. ...유진? 둘이 여기서 뭐 해?", undefined],
+        ["참머의 손에는 커터칼이 들려 있었다. (축제 소품 준비용이겠지만)", "bg_school_warehouse_yujin_chammuh_c_cutter"],
+        ["참머: 유진아. 내가 말했지. ${nickname}한테 접근하지 말라고.", undefined]
       ]
     },
     {
@@ -581,27 +566,27 @@
     {
       "type": "conv",
       "contents": [
-        ["참머는 그날 이후로 나에게 말을 걸지 않았다."],
-        ["대신, 유진과 나는 부쩍 친해졌다."],
-        ["${nickname}: (참머는... 괜찮으려나.)"],
-        ["유진: ${nickname}! 여기 소품 좀 같이 옮겨줘!"],
-        ["${nickname}: 어, 알았어!"],
-        ["축제 당일. 유진과 함께 소품을 옮기러 창고에 왔다."],
-        ["유진: 후... ${nickname} 덕분에 살았어."],
-        ["${nickname}: 별 거 아냐."],
-        ["유진: ...있지. 나 너한테 할 말 있어."],
-        ["유진이 얼굴을 붉히며 입을 열려는 순간,"],
-        ["쾅! 하고 창고 문이 닫혔다. 그리고 밖에서 잠그는 소리가 들렸다."],
-        ["${nickname}: 뭐야?! 누구야!"],
-        ["유진: ...!"],
-        ["참머: (밖에서) ${nickname}."],
-        ["${nickname}: 참머! 너야? 문 열어!"],
-        ["참머: ...싫어. 넌 거기서 유진이랑 계속 같이 있어."],
-        ["참머: ${nickname}는 날 배신했어. 나 말고 저런 애를 선택했어."],
-        ["참머: ...거기서... 둘이서... 영원히..."],
-        ["${nickname}: 참머!!"],
-        ["유진: ...${nickname}. 나... 사실... 폐소공포증이 있어..."],
-        ["유진이 숨을 가쁘게 몰아쉬기 시작했다."]
+        ["참머는 그날 이후로 나에게 말을 걸지 않았다.", "bg_classroom_prep"],
+        ["대신, 유진과 나는 부쩍 친해졌다.", "bg_classroom_prep_yujin_smile"],
+        ["${nickname}: (참머는... 괜찮으려나.)", undefined],
+        ["유진: ${nickname}! 여기 소품 좀 같이 옮겨줘!", "bg_classroom_prep_yujin_smile"],
+        ["${nickname}: 어, 알았어!", undefined],
+        ["(축제 당일. 유진과 함께 소품을 옮기러 창고에 왔다.)", "bg_school_warehouse_yujin_smile"],
+        ["유진: 후... ${nickname} 덕분에 살았어.", undefined],
+        ["${nickname}: 별 거 아냐.", undefined],
+        ["유진: ...있지. 나 너한테 할 말 있어.", "bg_school_warehouse_yujin_blush"],
+        ["유진이 얼굴을 붉히며 입을 열려는 순간,", undefined],
+        ["(쾅! 하고 창고 문이 닫혔다. 그리고 밖에서 잠그는 소리가 들렸다.)", "bg_school_warehouse_dark"],
+        ["${nickname}: 뭐야?! 누구야!", undefined],
+        ["유진: ...!", "bg_school_warehouse_dark_yujin_scared"],
+        ["참머: (밖에서) ${nickname}.", undefined],
+        ["${nickname}: 참머! 너야? 문 열어!", undefined],
+        ["참머: ...싫어. 넌 거기서 유진이랑 계속 같이 있어.", undefined],
+        ["참머: ${nickname}는 날 배신했어. 나 말고 저런 애를 선택했어.", undefined],
+        ["참머: ...거기서... 둘이서... 영원히...", undefined],
+        ["${nickname}: 참머!!", undefined],
+        ["유진: ...${nickname}. 나... 사실... 폐소공포증이 있어...", "bg_school_warehouse_dark_yujin_panic"],
+        ["(유진이 숨을 가쁘게 몰아쉬기 시작했다.)", undefined]
       ]
     },
     {
@@ -617,15 +602,15 @@
     {
       "type": "conv",
       "contents": [
-        ["그날 이후, 참머와 유진 모두 나에게 쌀쌀맞다."],
-        ["${nickname}: (하... 편하긴 한데...)" ],
-        ["축제 준비도 혼자, 밥도 혼자."],
-        ["참머는 학생회 일로 바빠 보이고, 유진은 다른 친구들과 어울려 다닌다."],
-        ["참머와 유진이 복도에서 마주치는 것을 봤다."],
-        ["두 사람은 나를 한 번 쓱 쳐다보더니, 서로를 노려보며 지나갔다."],
-        ["...나 때문에 둘이 사이가 나빠진 건가?"],
-        ["아니, 나랑 상관없을지도."],
-        ["그렇게 나의 고등학교 첫 축제는... 아무 일 없이 지나갔다."]
+        ["그날 이후, 참머와 유진 모두 나에게 쌀쌀맞다.", "bg_classroom_alone"],
+        ["${nickname}: (하... 편하긴 한데...)", undefined],
+        ["축제 준비도 혼자, 밥도 혼자.", undefined],
+        ["참머는 학생회 일로 바빠 보이고, 유진은 다른 친구들과 어울려 다닌다.", "bg_classroom_alone"],
+        ["(복도에서 참머와 유진이 마주치는 것을 봤다.)", "bg_school_hallway_chammuh_yujin_glare"],
+        ["두 사람은 나를 한 번 쓱 쳐다보더니, 서로를 노려보며 지나갔다.", undefined],
+        ["...나 때문에 둘이 사이가 나빠진 건가?", "bg_classroom_alone"],
+        ["아니, 나랑 상관없을지도.", undefined],
+        ["그렇게 나의 고등학교 첫 축제는... 아무 일 없이 지나갔다.", "bg_school_gate_sunset_alone"]
       ]
     },
     {
@@ -637,23 +622,23 @@
     {
       "type": "conv",
       "contents": [
-        [": (Ending. 1)"],
-        ["${nickname}: 참머, 그만해."],
-        ["나는 참머의 앞을 막아섰다."],
-        ["참머: ...${nickname}? 비켜."],
-        ["${nickname}: 네가 무슨 생각하는지 알아. 하지만 이건 아니야."],
-        ["참머: ..."],
-        ["참머: ...알았어. ${nickname}가 그렇게 말한다면."],
-        ["참머는 순순히 커터칼을 내려놓았다."],
-        ["참머: 대신, 쟤... 다신 내 눈에 안 띄게 해."],
-        ["유진은 울면서 창고를 뛰쳐나갔다. 다음 날, 유진은 학교에 나오지 않았다."],
-        ["..."],
-        ["참머: 역시 ${nickname}는 날 배신하지 않았어."],
-        ["참머가 내 손을 꼭 잡았다."],
-        ["참머: 우린 영원히 함께야. 그렇지?"],
-        ["${nickname}: ...그래."],
-        ["나는 참머의 손을 마주 잡았다. 도망칠 곳은 없었다."],
-        ["[ ED 1 : 완벽한 새장 ]"]
+        ["(Ending. 1)", "bg_school_warehouse_yujin_chammuh_c_cutter"],
+        ["${nickname}: 참머, 그만해.", undefined],
+        ["(나는 참머의 앞을 막아섰다.)", undefined],
+        ["참머: ...${nickname}? 비켜.", "bg_school_warehouse_yujin_chammuh_c_cold"],
+        ["${nickname}: 네가 무슨 생각하는지 알아. 하지만 이건 아니야.", undefined],
+        ["참머: ...", undefined],
+        ["참머: ...알았어. ${nickname}가 그렇게 말한다면.", "bg_school_warehouse_yujin_chammuh_c_smile"],
+        ["(참머는 순순히 커터칼을 내려놓았다.)", undefined],
+        ["참머: 대신, 쟤... 다신 내 눈에 안 띄게 해.", "bg_school_warehouse_chammuh_c_smile"],
+        ["(유진은 울면서 창고를 뛰쳐나갔다. 다음 날, 유진은 학교에 나오지 않았다.)", "bg_classroom_yujin_empty_desk"],
+        ["...", "bg_classroom_chammuh_smile"],
+        ["참머: 역시 ${nickname}는 날 배신하지 않았어.", undefined],
+        ["(참머가 내 손을 꼭 잡았다.)", undefined],
+        ["참머: 우린 영원히 함께야. 그렇지?", "bg_classroom_chammuh_happy"],
+        ["${nickname}: ...그래.", undefined],
+        ["나는 참머의 손을 마주 잡았다. 도망칠 곳은 없었다.", "bg_ending_chammuh_A"],
+        ["[ ED 1 : 완벽한 새장 ]", undefined]
       ]
     }
   ],
@@ -661,17 +646,17 @@
     {
       "type": "conv",
       "contents": [
-        [": (Ending. 2)"],
-        ["${nickname}: 유진, 괜찮아?"],
-        ["나는 유진을 내 등 뒤로 감쌌다."],
-        ["참머: ...${nickname}."],
-        ["참머의 얼굴에서 모든 표정이 사라졌다."],
-        ["참머: ...그래. 날 선택하지 않은 거구나."],
-        ["참머: ...좋아. 둘 다... 후회하게 해줄게."],
-        ["참머는 창고를 나갔다. 그 뒤, 끔찍한 일들이 벌어졌다."],
-        ["유진의 사물함에는 매일같이 죽은 쥐가 들어있었고, 내 책상은 칼로 그어져 있었다."],
-        ["결국 나와 유진은 학교를 다닐 수 없게 되었다."],
-        ["[ ED 2 : 부서진 일상 ]"]
+        ["(Ending. 2)", "bg_school_warehouse_yujin_chammuh_c_cutter"],
+        ["${nickname}: 유진, 괜찮아?", undefined],
+        ["(나는 유진을 내 등 뒤로 감쌌다.)", "bg_school_warehouse_yujin_chammuh_c_cold"],
+        ["참머: ...${nickname}.", undefined],
+        ["(참머의 얼굴에서 모든 표정이 사라졌다.)", "bg_school_warehouse_yujin_chammuh_c_furious"],
+        ["참머: ...그래. 날 선택하지 않은 거구나.", undefined],
+        ["참머: ...좋아. 둘 다... 후회하게 해줄게.", undefined],
+        ["(참머는 창고를 나갔다. 그 뒤, 끔찍한 일들이 벌어졌다.)", "bg_school_hallway"],
+        ["유진의 사물함에는 매일같이 죽은 쥐가 들어있었고, 내 책상은 칼로 그어져 있었다.", "bg_classroom_vandalized"],
+        ["결국 나와 유진은 학교를 다닐 수 없게 되었다.", "bg_ending_chammuh_B"],
+        ["[ ED 2 : 부서진 일상 ]", undefined]
       ]
     }
   ],
@@ -679,20 +664,20 @@
     {
       "type": "conv",
       "contents": [
-        [": (Ending. 3)"],
-        ["${nickname}: 유진, 괜찮아! 괜찮아!"],
-        ["나는 유진을 꽉 껴안고 등을 토닥였다."],
-        ["${nickname}: 숨 천천히 쉬어. 내가 옆에 있어."],
-        ["유진: ...${nickname}."],
-        ["${nickname}: (밖을 향해) 참머! 제발 문 열어! 유진이가 위험해!"],
-        ["참머: ..."],
-        ["잠시 뒤, 밖이 조용해졌다. 참머는 가버린 듯했다."],
-        ["얼마 지나지 않아 선생님이 문을 열어주었다."],
-        ["유진: ...고마워. ${nickname}."],
-        ["유진은 내 품에서 고개를 들었다. 눈물로 젖은 얼굴이 가까웠다."],
-        ["유진: 네가... 좋아."],
-        ["참머는 다음 날 자퇴했다. 그리고 나와 유진은... 조심스럽게 만나기 시작했다."],
-        ["[ ED 3 : 새로운 시작 ]"]
+        ["(Ending. 3)", "bg_school_warehouse_dark_yujin_panic"],
+        ["${nickname}: 유진, 괜찮아! 괜찮아!", undefined],
+        ["(나는 유진을 꽉 껴안고 등을 토닥였다.)", "bg_school_warehouse_dark_yujin_comfort"],
+        ["${nickname}: 숨 천천히 쉬어. 내가 옆에 있어.", undefined],
+        ["유진: ...${nickname}.", undefined],
+        ["${nickname}: (밖을 향해) 참머! 제발 문 열어! 유진이가 위험해!", "bg_school_warehouse_dark_yujin_comfort"],
+        ["참머: ...", undefined],
+        ["(잠시 뒤, 밖이 조용해졌다. 참머는 가버린 듯했다.)", undefined],
+        ["(얼마 지나지 않아 선생님이 문을 열어주었다.)", "bg_school_warehouse_yujin_relief"],
+        ["유진: ...고마워. ${nickname}.", undefined],
+        ["(유진은 내 품에서 고개를 들었다. 눈물로 젖은 얼굴이 가까웠다.)", undefined],
+        ["유진: 네가... 좋아.", "bg_school_warehouse_yujin_blush"],
+        ["참머는 다음 날 자퇴했다. 그리고 나와 유진은... 조심스럽게 만나기 시작했다.", "bg_school_gate_yujin_smile"],
+        ["[ ED 3 : 새로운 시작 ]", "bg_ending_yujin_A"]
       ]
     }
   ],
@@ -700,17 +685,17 @@
     {
       "type": "conv",
       "contents": [
-        [": (Ending. 4)"],
-        ["${nickname}: 젠장!"],
-        ["나는 문을 향해 몸을 부딪혔다. 하지만 문은 꿈쩍도 하지 않았다."],
-        ["유진: ...하... 하..."],
-        ["${nickname}: 유진! 정신 차려!"],
-        ["${nickname}: 참머! 너 진짜 이럴 거야! 사람 죽는 거 보고 싶어!"],
-        ["참머: ..."],
-        ["참머는 대답이 없었다. 유진의 숨소리가 점점 약해졌다."],
-        ["내가 문을 부수고 나왔을 때, 유진은 이미..."],
-        ["참머는 그날 실종되었다. 나는 평생을 죄책감 속에서 살아야 했다."],
-        ["[ ED 4 : 늦은 후회 ]"]
+        ["(Ending. 4)", "bg_school_warehouse_dark_yujin_panic"],
+        ["${nickname}: 젠장!", undefined],
+        ["(나는 문을 향해 몸을 부딪혔다. 하지만 문은 꿈쩍도 하지 않았다.)", "bg_school_warehouse_dark_door"],
+        ["유진: ...하... 하...", "bg_school_warehouse_dark_yujin_panic"],
+        ["${nickname}: 유진! 정신 차려!", undefined],
+        ["${nickname}: 참머! 너 진짜 이럴 거야! 사람 죽는 거 보고 싶어!", "bg_school_warehouse_dark_door"],
+        ["참머: ...", undefined],
+        ["(참머는 대답이 없었다. 유진의 숨소리가 점점 약해졌다.)", "bg_school_warehouse_dark_yujin_faint"],
+        ["(내가 문을 부수고 나왔을 때, 유진은 이미...)", undefined],
+        ["참머는 그날 실종되었다. 나는 평생을 죄책감 속에서 살아야 했다.", "bg_classroom_yujin_empty_desk"],
+        ["[ ED 4 : 늦은 후회 ]", "bg_ending_yujin_B"]
       ]
     }
   ],
@@ -718,14 +703,14 @@
     {
       "type": "conv",
       "contents": [
-        [": (Ending. 5)"],
-        ["나는... 아무것도 하지 못했다."],
-        ["참머가 유진을 밀치고, 유진이 나를 원망스럽게 쳐다보고..."],
-        ["혹은"],
-        ["유진이 내 앞에서 쓰러지고, 참머가 밖에서 웃고..."],
-        ["어느 쪽이든, 나는 방관자였다."],
-        ["그날 이후, 나는 두 사람을 모두 잃었다."],
-        ["[ ED 5 : 방관자 ]"]
+        ["(Ending. 5)", "bg_ending_bad"],
+        ["나는... 아무것도 하지 못했다.", undefined],
+        ["참머가 유진을 밀치고, 유진이 나를 원망스럽게 쳐다보고...", undefined],
+        ["혹은", undefined],
+        ["유진이 내 앞에서 쓰러지고, 참머가 밖에서 웃고...", undefined],
+        ["어느 쪽이든, 나는 방관자였다.", undefined],
+        ["그날 이후, 나는 두 사람을 모두 잃었다.", "bg_classroom_alone"],
+        ["[ ED 5 : 방관자 ]", "bg_ending_bad_final"]
       ]
     }
   ],
@@ -733,13 +718,13 @@
     {
       "type": "conv",
       "contents": [
-        [": (Ending. 6)"],
-        ["나는 아무도 선택하지 않았다."],
-        ["참머도, 유진도... 나와는 다른 세상 사람들 같았다."],
-        ["나는 그저 평범한 고등학교 생활을 보냈다."],
-        ["가끔 복도에서 마주치는 두 사람은, 나를 모르는 사람처럼 지나쳤다."],
-        ["그편이... 차라리 편했다."],
-        ["[ ED 6 : 평범한 나날 ]"]
+        ["(Ending. 6)", "bg_school_gate_sunset_alone"],
+        ["나는 아무도 선택하지 않았다.", undefined],
+        ["참머도, 유진도... 나와는 다른 세상 사람들 같았다.", undefined],
+        ["나는 그저 평범한 고등학교 생활을 보냈다.", "bg_classroom_alone"],
+        ["가끔 복도에서 마주치는 두 사람은, 나를 모르는 사람처럼 지나쳤다.", "bg_school_hallway_alone"],
+        ["그편이... 차라리 편했다.", "bg_ending_solo"],
+        ["[ ED 6 : 평범한 나날 ]", undefined]
       ]
     }
   ],
