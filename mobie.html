@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chammuh barber</title>
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css' rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet" type="text/css">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Spoqa Han Sans', 'Sans-serif';
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(960px, 95vw); /* 화면 폭에 맞춰 축소되도록 */
+        }
+
+        canvas {
+            background: #0044ff9a;
+            margin: 0 auto;
+            border-radius: 2rem;
+            display: block;
+            width: 100%;         /* CSS로 가로폭 맞춤 (내부 좌표계는 960x540 유지) */
+            max-width: 960px;
+            height: auto;
+            touch-action: manipulation; /* 터치 동작 간소화 (더 자연스러운 터치) */
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .title {
+            margin-top: 10px;
+            font-weight: 100;
+            font-size: 2rem;
+        }
+
+        .container p {
+            font-weight: 100;
+            font-size: 1.3em;
+            margin-top: 10px;
+        }
+        
+        /* 추가된 footer 스타일 */
+        .footer {
+            margin-top: 20px; /* 상단 여백 추가 */
+            text-align: center;
+            font-size: 0.9em;
+            color: #666; /* 글씨 색상을 연하게 */
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="container">
+<canvas id="game" height="540" width="960"></canvas>
+<h1 class="title">5년만에 돌아온 참연시</h1>
+<p>조작법 - 마우스 클릭으로 스토리 넘기기</p>
+<p>
+벚꽃 흩날리는 고등학교 첫날, 당신의 평범했던 일상이 두 명의 소녀로 인해 특별해집니다.<br>
+모든 것이 완벽한 <b>소꿉친구</b>와 새롭게 다가온 차분하고 <b>어른스러운 동급생</b>.<br>
+당신의 사소한 선택이 그녀들과의 관계를 바꾸고, 때로는 돌이킬 수 없는 결말을 불러옵니다.
+</p>
+<p>
+"참연시"에는 <b>총 6개의 멀티 엔딩</b>이 준비되어 있습니다.<br>
+당신의 선택으로 누군가와 달콤한 사랑을 시작할 수도, 혹은 모두가 파국으로 치닫는 비극을 맞이할 수도 있습니다.
+</p>
+<p>
+과연 당신의 마음이 향하는 곳은 어디일까요?<br>
+<del>어우 오글거려</del>
+</p>
+<p>
+※ 저장/로드는 잘 작동하지 않으니 쓰지 않는 것을 추천합니다.
+</p>
+
+<footer class="footer">
+    원작: 프네우마 | 제작: 진윤(윤하진)
+</footer>
+
+</div>
+</body>
+  <audio id="bgm-player" loop></audio>
+  <audio id="sfx-player"></audio>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="./Visual-Novel-Engine/index.js"></script>
+<script src="index.js"></script>
+<script>
+(function(){
+  const canvas = document.getElementById('game');
+  if(!canvas) return;
+
+  // 초기 CSS 세팅 (내부 논리 해상도 960x540 유지)
+  canvas.style.width = '100%';
+  canvas.style.maxWidth = '960px';
+  canvas.style.height = 'auto';
+  canvas.style.touchAction = 'manipulation';
+  canvas.style.webkitTapHighlightColor = 'transparent';
+  canvas.style.userSelect = 'none';
+
+  const container = document.querySelector('.container');
+  if(container) {
+    container.style.width = 'min(960px, 95vw)';
+    container.style.margin = '0 auto';
+  }
+
+  // 터치 이벤트를 기존 마우스 이벤트로 변환
+  function dispatchMouseEvent(type, touchEvent) {
+    const touches = touchEvent.changedTouches && touchEvent.changedTouches.length ? touchEvent.changedTouches : touchEvent.touches;
+    if(!touches || touches.length === 0) return;
+    const t = touches[0];
+    const evt = new MouseEvent(type, {
+      bubbles: true,
+      cancelable: true,
+      clientX: t.clientX,
+      clientY: t.clientY,
+      view: window
+    });
+    canvas.dispatchEvent(evt);
+  }
+
+  canvas.addEventListener('touchstart', function(e){
+    e.preventDefault();
+    dispatchMouseEvent('mousemove', e);
+    // 기존 엔진 시작/클릭 처리는 click 이벤트로 하므로 click 합성
+    dispatchMouseEvent('click', e);
+  }, {passive:false});
+
+  canvas.addEventListener('touchmove', function(e){
+    e.preventDefault();
+    dispatchMouseEvent('mousemove', e);
+  }, {passive:false});
+
+  canvas.addEventListener('touchend', function(e){
+    e.preventDefault();
+    const evt = new MouseEvent('mouseup', { bubbles:true });
+    canvas.dispatchEvent(evt);
+  }, {passive:false});
+
+  canvas.addEventListener('contextmenu', function(e){ e.preventDefault(); });
+
+  // 모바일에서 가로/세로에 따라 캔버스 크기 조절
+  function adjustCanvasForOrientation() {
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+
+    // 가로 모드(landscape)일 때: 캔버스 높이를 뷰포트 높이에 맞춤(여백 5%)
+    if (vw > vh) {
+      // 가로 모드: 높이를 기준으로 맞춤 -> UI(대화창 등)가 화면에 잘 보이도록 약간 여유 줌
+      canvas.style.height = '95vh';
+      canvas.style.width = 'auto';
+      canvas.style.maxWidth = 'none';
+      // 컨테이너도 가운데 정렬(가로 모드에서 세로 중심 맞춤)
+      if(container) {
+        container.style.width = '100%';
+        container.style.height = '95vh';
+        container.style.display = 'flex';
+        container.style.alignItems = 'center';
+        container.style.justifyContent = 'center';
+      }
+    } else {
+      // 세로 모드: 기존 동작 유지(100% 폭)
+      canvas.style.width = '100%';
+      canvas.style.height = 'auto';
+      canvas.style.maxWidth = '960px';
+      if(container) {
+        container.style.width = 'min(960px, 95vw)';
+        container.style.height = 'auto';
+        container.style.display = 'block';
+      }
+    }
+
+    // (선택) 고DPR 선명도 문제: 엔진을 수정하지 않는 한 CSS 스케일로 처리되므로
+    // 아주 선명하지 않을 수 있음. 필요하면 엔진 쪽에서 devicePixelRatio 대응을 권장.
+  }
+
+  // 초기 조정
+  adjustCanvasForOrientation();
+
+  // 리사이즈 / 방향 변경에 대응
+  window.addEventListener('resize', () => { adjustCanvasForOrientation(); });
+  window.addEventListener('orientationchange', () => {
+    // orientationchange 직후 레이아웃이 안정되지 않을 수 있으므로 약간 지연
+    setTimeout(adjustCanvasForOrientation, 200);
+  });
+
+  // 자동재생 제한 완화를 위한 최초 상호작용 시 BGM 재생 시도
+  function tryUnlockAudio() {
+    const bgm = document.getElementById('bgm-player');
+    if(bgm) bgm.play().catch(()=>{});
+    window.removeEventListener('touchstart', tryUnlockAudio);
+    window.removeEventListener('click', tryUnlockAudio);
+  }
+  window.addEventListener('touchstart', tryUnlockAudio, {passive:true});
+  window.addEventListener('click', tryUnlockAudio, {passive:true});
+
+})();
+</script>
+
+</html>
